@@ -1,0 +1,12 @@
+# this is a comment line
+
+# specify the file name
+FILENAME=Chr5_145870001_157870001_G2.5_SC_{{index_1}}_short_{{another_index}}.in
+
+index_1=np.arange(1,31)
+index_2=np.arange(1,31)
+index_3=np.arange(1,31)
+another_index=np.arange(5,35)
+
+# create the random seed
+langevin_seed=np.random.randint(1,10000000,size=30)
