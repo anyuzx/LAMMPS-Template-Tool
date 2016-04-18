@@ -4,7 +4,7 @@ This tool can write Lammps input files based on a template and a parameter file.
 
 ## Usage
 
-The repository contains one template file example and one parameter file example. Let's look at `parameter.txt`
+The repository contains one example template file and one example parameter file. Let's look at `parameter.txt`
 
 ```
 # this is a comment line
