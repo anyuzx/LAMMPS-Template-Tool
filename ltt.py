@@ -46,7 +46,7 @@ with open(args.parameter, 'r') as f:
         # ignore the empty line
         if line.strip():
             # ignore line with '#' starting. comment line
-            if line[0] != '#':
+            if line[0] != '#' or line[0:2] == '#!' or line[0:7] == '#SBATCH':
                 try:
                     # split at the first occurence of '='
                     split_str = line.split('=', 1)
