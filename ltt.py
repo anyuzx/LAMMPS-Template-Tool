@@ -2,6 +2,7 @@ import re
 import sys
 import numpy as np
 import argparse
+import PyRanOrg
 
 # ----------------------------------------------------
 # multiple replacement function
