@@ -3,6 +3,8 @@ import sys
 import numpy as np
 import argparse
 import PyRanOrg
+import glob
+import os
 
 # ----------------------------------------------------
 # multiple replacement function
