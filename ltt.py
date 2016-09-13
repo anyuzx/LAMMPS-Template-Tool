@@ -24,7 +24,7 @@ def multiple_replace(dict, text, index=0):
         return pattern.sub(lambda m: str(dict[m.group(0)[2:-2]]), text)
 # ---------------------------------------------------
 
-def main(template_file, parameter_file):
+def ltt(template_file, parameter_file):
     # -----------------------------------------------------
     # first compile the pattern in parameter
     # parameter must be specified in such manner:
@@ -102,4 +102,4 @@ if __name__ == '__main__':
     parser.add_argument("parameter", help='specify parameter file path')
     args = parser.parse_args()
 
-    main(args.template, args.parameter)
+    ltt(args.template, args.parameter)
