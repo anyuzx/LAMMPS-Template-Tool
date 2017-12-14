@@ -27,6 +27,6 @@ All keyword or parameter should be specified by using `=` sign. Note that partic
 
 After we have written our parameter file, we can use the following command to generate the input file.
 
-```python
+```bash
 python ltt.py template.in parameter.txt
 ```
