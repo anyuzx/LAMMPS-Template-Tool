@@ -1,14 +1,16 @@
-# this is a comment line
+# This is a comment line
+# Comments are ignored 
 
-# specify the file name
-FILENAME=Chr5_145870001_157870001_G2.5_SC_{{index_1}}_short_{{another_index}}.in
+# Specify the file name
+# Use double curly braces to embrace the parameter name
+FILENAME=my_lammps_input_{{index_1}}_{{another_index}}.in
 
 index_1=np.arange(1,31)
 index_2=np.arange(1,31)
 index_3=np.arange(1,31)
 another_index=np.arange(5,35)
 
-# create the random seed
-langevin_seed=np.random.randint(1,10000000,size=30)
-# or
-# langevin_seed=[' '.join([str(i) for i in PyRanOrg.choice(1,10000000,30)])]
+# Create the random seed using Numpy
+seed=np.random.randint(1,10000000,size=30)
+# Or use random.org for random seeds
+# seed=[' '.join([str(i) for i in PyRanOrg.choice(1,10000000,30)])]

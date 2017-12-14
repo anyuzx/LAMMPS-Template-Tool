@@ -97,7 +97,7 @@ def ltt(template_file, parameter_file):
     return parameter_file_lst
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Generate LAMMPS input file using template and parameter files')
+    parser = argparse.ArgumentParser(description='Generate LAMMPS input file using template and parameter files.\n Use double curly braces to embrace the parameters name in the template file.')
     parser.add_argument("template", help='specify template file path')
     parser.add_argument("parameter", help='specify parameter file path')
     args = parser.parse_args()

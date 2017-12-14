@@ -1,55 +1,34 @@
-##############################################
+# ---------------------------------------------------#
+#             LAMMPS input file template             #
+# ---------------------------------------------------#
+
 # VARIABLES
-variable       input index Chr5_145870001_157870001_G2.5_SC_{{index_2}}_200000000.rest
-variable       output index Chr5_145870001_157870001_G2.5_SC_{{index_3}}_short
-variable       id_end equal 10000
-variable       Rd equal (x[1]-x[${id_end}])^2+(y[1]-y[${id_end}])^2+(z[1]-z[${id_end}])^2
+variable       input index my_model_{{index_2}}_200000000.rest
+variable       output index my_model_{{index_3}}_short
 
 # Initialization
-# units          lj
-#boundary       s s s
-# atom_style     molecular
+units          lj
+boundary       s s s
+atom_style     molecular
 log            log.${output}.txt
-#read_data      ${input}
 read_restart   ${input}
-reset_timestep 0
+
 
 # Potential information
 neighbor       2.0  bin
-#bond_style     harmonic
-#bond_coeff     1 300.0 1.13
-#bond_coeff     2 300.0 1.13
-#angle_style    harmonic
-#angle_coeff    1 2.5 180.0
-#pair_style     lj/cut 3.0
-#pair_modify    shift yes mix arithmetic
-#pair_coeff     1  1  1.3  1.0  3.0
-#pair_coeff     1  2  1.0  1.0  3.0
-#pair_coeff     2  2  1.3  1.0  3.0
-#special_bonds  lj 1.0 1.0 1.0
+bond_style     harmonic
+bond_coeff     1 300.0 1.13
+pair_style     lj/cut 3.0
+pair_coeff     1  1  1.3  1.0  3.0
 
 # energy minimization
-#minimize      1.0e-4 1.0e-6 100000000 100000000
-#reset_timestep 0
-
-#group A type 1
-#group B type 2
+minimize      1.0e-4 1.0e-6 100000000 100000000
 
 # bring loop base together
-compute        Rg all gyration
-compute        ke all ke/atom
-compute        pe all pe/atom
 fix            1 all nve
-fix            2 all langevin 1.0 1.0 100.0 {{langevin_seed}}
-fix            3 all recenter INIT INIT INIT
+fix            2 all langevin 1.0 1.0 100.0 {{seed}}
 thermo_style   custom step cpuremain temp c_Rg v_Rd evdwl ebond
-thermo         1
-dump           1 all h5md 1 ${output}_traj.h5 position velocity 
-dump           2 all custom 1 ${output}_energy.txt id c_pe c_ke
+thermo         100
+dump           1 all h5md 100 ${output}_traj.h5 position velocity 
 timestep       0.01
 run            20000
-
-write_restart  ${output}_*.rest
-write_data     ${output}_*.dat
-
-print 'All done'
