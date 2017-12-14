@@ -1,4 +1,4 @@
-"""This is a minimal Python client for Mads Haahr's random number generator at www.random.org
+"""This is a minimal Python client for Mads Haahr's random number generator at www.random.org 
 
 # This tiny set of functions only implements a subset of the HTTP interface available. In particular it only uses the 'live'
 # random number generator, and doesn't offer the option of using the alternative 'stored' random
@@ -27,16 +27,16 @@ from randomwrapy import *
 
 rnumlistwithoutreplacement(0, 12)
    # returns a list of the integers 0 - 12 inclusive, in a random order
-
+   
 rnumlistwithreplacement(12, 5)
    # returns 12 integers from the range [0, 5]
-
+   
 rnumlistwithreplacement(12, 5, 2)
    # returns 12 integers from the range [2, 5]
-
+   
 rrandom()
    # returns a random float in the range [0, 1]
-
+   
 reportquota()
    # tells you how many bits you have available; visit www.random.org/quota for more information
 
@@ -49,7 +49,6 @@ that goes a little further with error checking.
 """
 
 import urllib2
-import numpy as np
 
 
 def rnumlistwithoutreplacement(min, max):
@@ -62,23 +61,6 @@ def rnumlistwithoutreplacement(min, max):
     opener = urllib2.build_opener()
     numlist = opener.open(request).read()
     return numlist.split()
-
-def choice(min,max,num):
-    """Returns a random list of unique integer numbers chosen between min and max"""
-    if checkquota() < 1:
-        raise Exception, "Your www.random.org quota has already run out."
-    requestparam = build_request_parameterChoise(min,max,num)
-    request = urllib2.Request(requestparam)
-    request.add_header('User-Agent', 'randomwrapy/0.1 very alpha')
-    opener = urllib2.build_opener()
-    numlist = opener.open(request).read()
-    return np.int_(numlist.split())
-
-def build_request_parameterChoise(min,max,num):
-    randomorg = 'http://www.random.org/integer-sets/'
-    vanilla = '&order=random&format=plain&rnd=new'
-    params = '&num='+str(num) + '&min=1' + str(min) + '&max=' + str(max)
-    return randomorg + '?sets=1&' + params + vanilla
 
 #helper
 def build_request_parameterNR(min, max):
@@ -111,7 +93,7 @@ Roll a dice 12 times (returning integers in the more familiar range [1,6]):
   rnumlistwithreplacement(12, 6, 1)
 """
 
-#helper
+#helper    
 def build_request_parameterWR(howmany, min, max):
     randomorg = 'http://www.random.org/integers/?num='
     vanilla = '&col=1&base=10&format=plain&rnd=new'
@@ -146,4 +128,7 @@ def reportquota():
     request.add_header('User-Agent', 'randomwrapy/0.1 very alpha')
     opener = urllib2.build_opener()
     quota = opener.open(request).read()
-    print "This IP address has", quota, "bits left. Visit http://www.random.org/quota for more information."
+    print "This IP address has", quota, "bits left. Visit http://www.random.org/quota for more information."    
+    
+    
+    

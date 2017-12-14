@@ -10,3 +10,5 @@ another_index=np.arange(5,35)
 
 # create the random seed
 langevin_seed=np.random.randint(1,10000000,size=30)
+# or
+# langevin_seed=[' '.join([str(i) for i in PyRanOrg.choice(1,10000000,30)])]
